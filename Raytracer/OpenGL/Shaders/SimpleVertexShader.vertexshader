@@ -1,0 +1,20 @@
+#version 330 core
+
+// Input vertex data, different for all executions of this shader.
+
+// For the in parameters, you can either keep the order when listing them and not use the location() 
+// or use location and it doesn't matter in which order they are listed here
+layout(location = 0) in vec3 vertexPosition_modelspace;
+layout(location = 1) in vec3 vertexColor;
+uniform mat4 MVP;
+
+out vec3 fragmentColor;
+
+
+void main()
+{
+    vec4 v = vec4(vertexPosition_modelspace, 1);
+    gl_Position = MVP * v;
+
+    fragmentColor = vertexColor;
+}
